@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ononobi Praise | Software Engineer</title>
+  <meta name="description"
+    content="Ononobi Praise Chukwuebuka is a software engineer in Lagos building full-stack products and low-level tools.">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Ononobi Praise, back to top">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>Ononobi<br>Praise</span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1 class="hero-title" data-fit>
+        <span class="fit"><span class="w">Software</span> <span class="w">Engineer</span></span>
+      </h1>
+
+      <div class="hero-intro">
+        <p>Most recently at TagShift, where I led the mobile app and admin platform behind $60K in revenue and 6
+          enterprise clients. Based in Lagos, Nigeria.</p>
+        <p>I'm an Electrical &amp; Electronics Engineering student at the University of Lagos who builds full-stack
+          products and the low-level tools underneath them.</p>
+        <a class="cta" href="#contact">Get in touch <span aria-hidden="true">&rarr;</span></a>
+      </div>
+
+      <div class="panel" id="panel">
+        <div class="panel-bg">
+          <div class="portrait">
+            <!-- Drop your cut-out photo at assets/portrait.png (transparent PNG works best).
+                 Until then, the silhouette below is shown. -->
+            <svg class="silhouette" viewBox="0 0 400 460" role="img" aria-label="Portrait placeholder">
+              <circle cx="200" cy="150" r="84" />
+              <path d="M36 460C36 336 108 268 200 268s164 68 164 192z" />
+            </svg>
+            <img id="portrait-img" src="assets/portrait.png" alt="Portrait of Ononobi Praise" hidden>
+          </div>
+        </div>
+
+        <div class="stickers" aria-hidden="true">
+          <div class="stk stk-round stk-teal" style="--i:0">
+            <span class="dots"><i></i><i></i></span>
+            <span class="t">Backend<br>systems</span>
+            <span class="sub">Node, Express<br>and PostgreSQL</span>
+          </div>
+
+          <div class="stk stk-rect stk-yellow" style="--i:1">
+            <span class="t">Frontend <span class="pill">Next.js</span></span>
+            <span class="t">Interfaces</span>
+          </div>
+
+          <div class="stk stk-rect stk-pink" style="--i:2">
+            <span class="t">Low&ndash;<br>level<br>engineering&copy;</span>
+          </div>
+
+          <div class="stk stk-rect stk-orange" style="--i:3">
+            <span class="t">Docker &amp;</span>
+            <span class="arrow"></span>
+            <span class="t">CI/CD</span>
+          </div>
+
+          <div class="stk stk-rect stk-teal2" style="--i:4">
+            <span class="t">Systems<br>&amp; tooling</span>
+            <span class="burst">&#10040;</span>
+            <span class="t">&copy;&rsquo;26</span>
+          </div>
+
+          <div class="stk stk-ring" style="--i:5">
+            <svg class="ring" viewBox="0 0 200 200">
+              <defs>
+                <path id="ring-path" d="M28,100 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0" />
+              </defs>
+              <text>
+                <textPath href="#ring-path" textLength="446" lengthAdjust="spacing">OPEN TO ROLES * OPEN TO ROLES * OPEN
+                  TO ROLES * </textPath>
+              </text>
+            </svg>
+            <svg class="globe" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3">
+              <circle cx="24" cy="24" r="20" />
+              <ellipse cx="24" cy="24" rx="9" ry="20" />
+              <path d="M4 24h40M7 14h34M7 34h34" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-foot">
+        <span>Software engineer and builder</span>
+        <span>&copy;&rsquo;24 &ndash; Present</span>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="work" id="work">
+      <h2 class="sec-title">Selected work</h2>
+
+      <div class="projects">
+
+        <article class="project" style="--c: var(--orange)">
+          <div class="p-head">
+            <h3>RESPond</h3>
+            <p class="kind">Redis client CLI</p>
+          </div>
+          <div class="p-body">
+            <ul class="points">
+              <li>Zero-dependency Redis CLI built over Berkeley sockets with a 13-command RESP engine.</li>
+              <li>Benchmarked the RESP3 client on local hardware at 80k PING requests per second over a single
+                connection.</li>
+              <li>Covered parser and command paths with 40+ GTest cases under a Makefile build.</li>
+            </ul>
+            <ul class="tags">
+              <li>C++</li>
+              <li>Berkeley Sockets</li>
+              <li>RESP</li>
+              <li>GTest</li>
+            </ul>
+          </div>
+          <a class="p-link" href="https://github.com/AccoladesIO/RESPond" target="_blank" rel="noopener"
+            aria-label="RESPond on GitHub (opens in a new tab)">GitHub</a>
+        </article>
+
+        <article class="project" style="--c: var(--yellow)">
+          <div class="p-head">
+            <h3>KnotJS</h3>
+            <p class="kind">JavaScript modular bundler</p>
+          </div>
+          <div class="p-body">
+            <ul class="points">
+              <li>Engineered a modular bundler with a 5-stage, AST-based analyser in TypeScript.</li>
+              <li>Resolves graphs of 40+ nested modules into a single asset in under 15 milliseconds, per local
+                benchmarks.</li>
+              <li>Walks imports via the File System API and guards output with 30+ Jest tests.</li>
+            </ul>
+            <ul class="tags">
+              <li>TypeScript</li>
+              <li>Node.js</li>
+              <li>ASTs</li>
+              <li>File System API</li>
+              <li>Graph algorithms</li>
+              <li>Jest</li>
+            </ul>
+          </div>
+          <a class="p-link" href="https://github.com/AccoladesIO/KnotJS" target="_blank" rel="noopener"
+            aria-label="KnotJS on GitHub (opens in a new tab)">GitHub</a>
+        </article>
+
+        <article class="project" style="--c: var(--pink)">
+          <div class="p-head">
+            <h3>Hermes</h3>
+            <p class="kind">Distributed task management platform</p>
+          </div>
+          <div class="p-body">
+            <ul class="points">
+              <li>Designed a 4-service task platform in TypeScript with Express.js APIs over MongoDB.</li>
+              <li>Decoupled the services through RabbitMQ queues for asynchronous task processing.</li>
+              <li>Orchestrated containers with Docker Compose, improving deployment speed by 40%.</li>
+            </ul>
+            <ul class="tags">
+              <li>Node.js</li>
+              <li>Express.js</li>
+              <li>TypeScript</li>
+              <li>MongoDB</li>
+              <li>RabbitMQ</li>
+              <li>Docker</li>
+              <li>Jest</li>
+            </ul>
+          </div>
+          <a class="p-link" href="https://github.com/AccoladesIO/hermes" target="_blank" rel="noopener"
+            aria-label="Hermes on GitHub (opens in a new tab)">GitHub</a>
+        </article>
+
+        <article class="project" style="--c: var(--green)">
+          <div class="p-head">
+            <h3>Ingest</h3>
+            <p class="kind">Full-stack portfolio generator</p>
+          </div>
+          <div class="p-body">
+            <ul class="points">
+              <li>Developed a 6-endpoint FastAPI service that parses a resume and GitHub profile with an LLM.</li>
+              <li>Generates live, editable Vanilla JS portfolios from 3 templates in under 5 seconds.</li>
+              <li>Validated parsing and generation endpoints with 25+ Pytest cases across sample inputs.</li>
+            </ul>
+            <ul class="tags">
+              <li>Python</li>
+              <li>FastAPI</li>
+              <li>JavaScript</li>
+              <li>Anthropic API</li>
+              <li>Pytest</li>
+            </ul>
+          </div>
+          <a class="p-link" href="https://github.com/AccoladesIO/Ingest" target="_blank" rel="noopener"
+            aria-label="Ingest on GitHub (opens in a new tab)">GitHub</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="experience" id="experience">
+      <h2 class="sec-title">Experience</h2>
+
+      <div class="stats">
+        <div class="stat" style="--c: var(--teal); --r: -1.5deg"><b>$60K</b><span>revenue supported at TagShift within 8
+            months</span></div>
+        <div class="stat" style="--c: var(--yellow); --r: 1deg"><b>280+</b><span>staff tracked across shift-based
+            operations</span></div>
+        <div class="stat" style="--c: var(--pink); --r: -1deg"><b>~70%</b><span>fewer manual attendance disputes</span>
+        </div>
+        <div class="stat" style="--c: var(--orange); --r: 1.5deg"><b>$25M+</b><span>in client assets covered by Fortren
+            platforms</span></div>
+      </div>
+
+      <article class="job">
+        <div class="job-meta">
+          <p>Jun 2025 &ndash; May 2026</p>
+          <p>Lagos, Nigeria</p>
+        </div>
+        <div class="job-main">
+          <h3>TagShift</h3>
+          <p class="role">Software Engineer</p>
+          <ul class="points">
+            <li>Led development of the mobile app and admin platform that supported $60K in revenue and 6 enterprise
+              clients within 8 months, tracking 280+ staff across shift-based operations.</li>
+            <li>Pioneered haversine.js, an internal geolocation library enabling 100% location-verified attendance and
+              reducing manual disputes by ~70%.</li>
+            <li>Delivered scalable React.js and Next.js frontends for daily attendance tracking and real-time workforce
+              visibility, and containerised 5+ services with Docker for improved deployment reliability.</li>
+          </ul>
+          <ul class="tags">
+            <li>JavaScript</li>
+            <li>TypeScript</li>
+            <li>React.js</li>
+            <li>Next.js</li>
+            <li>Express.js</li>
+            <li>PostgreSQL (Sequelize ORM)</li>
+            <li>Docker</li>
+            <li>GitHub Actions</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-meta">
+          <p>May 2024 &ndash; May 2025</p>
+          <p>Lagos, Nigeria</p>
+        </div>
+        <div class="job-main">
+          <h3>Fortren &amp; Company</h3>
+          <p class="role">Software Engineering Intern</p>
+          <ul class="points">
+            <li>Built 3 data-driven internal platforms used by advisory teams for asset pricing, demand validation, and
+              absorption modelling across $25M+ in client assets.</li>
+            <li>Implemented Redis caching and optimised 20+ MySQL queries, cutting repeated database load by ~50% across
+              internal dashboards.</li>
+            <li>Orchestrated automated CI/CD pipelines via GitHub Actions and Docker, reducing deployment cycle times by
+              40%.</li>
+          </ul>
+          <ul class="tags">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>TypeScript</li>
+            <li>React.js</li>
+            <li>Redis</li>
+            <li>MySQL</li>
+            <li>Python</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <h2 class="sec-title">About</h2>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="lead">I build full-stack products and the low-level tools underneath them, from location-verified
+            attendance apps to a Redis client written in C++.</p>
+          <p>I'm studying Electrical &amp; Electronics Engineering at the University of Lagos while shipping production
+            software. I also teach: I tutor software engineering with GDSC UNILAG and lead frontend lessons at ECX
+            UNILAG.</p>
+
+          <div class="edu">
+            <h3>University of Lagos</h3>
+            <p class="edu-degree">B.Sc. Electrical &amp; Electronics Engineering</p>
+            <p>Expected graduation Feb 2028. Anticipated class: Second Class Upper Division.</p>
+            <p><strong>Coursework:</strong> Software Design &amp; Architecture, Database Systems and Design, Data
+              Structures &amp; Algorithms, Software Development Lifecycle (SDLC).</p>
+            <p><strong>Recognition:</strong> SWE Tutor at GDSC UNILAG. UN Academic Impact, UNAI &times; UNILAG MCN.</p>
+          </div>
+        </div>
+
+        <div class="skills">
+          <h3>Skills and technologies</h3>
+          <dl>
+            <dt>Languages</dt>
+            <dd>
+              <ul class="chips">
+                <li>C++</li>
+                <li>Python</li>
+                <li>JavaScript</li>
+                <li>TypeScript</li>
+                <li>SQL</li>
+                <li>Java</li>
+                <li>C#</li>
+              </ul>
+            </dd>
+            <dt>Frameworks and tools</dt>
+            <dd>
+              <ul class="chips">
+                <li>React.js (Next.js)</li>
+                <li>Node.js (Express.js)</li>
+                <li>Spring Boot</li>
+                <li>Docker</li>
+                <li>Git</li>
+                <li>GitHub Actions (CI/CD)</li>
+              </ul>
+            </dd>
+            <dt>Databases</dt>
+            <dd>
+              <ul class="chips">
+                <li>PostgreSQL</li>
+                <li>MySQL</li>
+                <li>MSSQL</li>
+                <li>Redis</li>
+                <li>Supabase</li>
+              </ul>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="roles">
+        <article>
+          <h3>Frontend Engineering Lead</h3>
+          <p class="role">ECX UNILAG, Nov 2025 &ndash; Present</p>
+          <p>Delivered intensive JavaScript, React, and API lessons. Among students who completed the program, 80% went
+            on to build and deploy apps addressing local needs.</p>
+        </article>
+        <article>
+          <h3>Operations Lead</h3>
+          <p class="role">Claude Builders Club, UNILAG, Feb 2026 &ndash; Present</p>
+          <p>Handled logistics for monthly technical workshops and hackathons for 500+ participants, consistently
+            delivering programs on schedule.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <h2>Let's build<br>something.</h2>
+      <a class="mail" href="mailto:ononobip@gmail.com">ononobip@gmail.com</a>
+      <ul class="links">
+        <li><a href="https://www.linkedin.com/in/ononobipraise" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/AccoladesIO" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://x.com/accoladesio" target="_blank" rel="noopener">X</a></li>
+      </ul>
+
+      <footer>
+        <span>&copy; <span id="year">2026</span> Ononobi Praise Chukwuebuka</span>
+        <span>Lagos, Nigeria</span>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>

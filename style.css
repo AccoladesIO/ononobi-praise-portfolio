@@ -11,6 +11,7 @@
   --pad: clamp(1.25rem, 6.5vw, 7rem);
   --display: "Anton", "Impact", "Arial Narrow", sans-serif;
   --body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --header-h: 4.5rem;
 }
 
 /* ---------- Base ---------- */
@@ -41,16 +42,25 @@ ul { padding: 0; list-style: none; }
   outline-offset: 3px;
 }
 
-section[id] { scroll-margin-top: 1rem; }
+section[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
 
 /* ---------- Header ---------- */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   padding: 1.6rem var(--pad);
+  background: var(--ink);
+  transform: translateY(0);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
 }
+
+.site-header.nav-hidden { transform: translateY(-100%); }
+.site-header.scrolled { box-shadow: 0 1px 0 rgba(238, 232, 225, 0.14); }
 
 .brand {
   display: flex;
@@ -186,15 +196,67 @@ section[id] { scroll-margin-top: 1rem; }
   scale: 1;
   user-select: none;
   transition: scale 0.18s ease;
-  animation: pop 0.6s cubic-bezier(0.2, 1.5, 0.4, 1) backwards;
-  animation-delay: calc(var(--i) * 110ms + 250ms);
+  /* Two animations: a one-shot pop-in, and a continuous, gentle random-looking
+     float that runs forever. They target different CSS properties (individual
+     "scale"/opacity vs. the legacy "transform" shorthand) so they don't fight
+     the drag interaction below, which uses the "translate"/"rotate" properties. */
+  animation:
+    pop 0.6s cubic-bezier(0.2, 1.5, 0.4, 1) backwards,
+    var(--float-name, floatTeal) var(--float-dur, 9s) var(--float-delay, 0s) ease-in-out infinite;
+  animation-delay: calc(var(--i) * 110ms + 250ms), var(--float-delay, 0s);
 }
 .stk:hover { scale: 1.06; }
-.stk.is-dragging { scale: 1.08; transition: none; cursor: grabbing; }
+.stk.is-dragging {
+  scale: 1.08;
+  transition: none;
+  cursor: grabbing;
+  animation-play-state: paused; /* freeze the float while the person is moving it */
+}
 @media (pointer: fine) { .stk { cursor: grab; } }
 
 @keyframes pop {
   from { scale: 0.3; opacity: 0; }
+}
+
+/* Six slightly different float paths so the stickers don't drift in lockstep.
+   Each moves a few pixels around its own resting spot and back, on a loop,
+   using several eased steps for a smooth, organic wobble rather than a
+   back-and-forth bounce. */
+@keyframes floatTeal {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20%      { transform: translate(10px, -12px) rotate(-3deg); }
+  45%      { transform: translate(-8px, 6px) rotate(2deg); }
+  70%      { transform: translate(6px, 10px) rotate(-1.5deg); }
+  90%      { transform: translate(-6px, -4px) rotate(1deg); }
+}
+@keyframes floatYellow {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25%      { transform: translate(-9px, 8px) rotate(2.5deg); }
+  50%      { transform: translate(7px, -9px) rotate(-2deg); }
+  75%      { transform: translate(-5px, -6px) rotate(1.5deg); }
+}
+@keyframes floatPink {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30%      { transform: translate(8px, 9px) rotate(-2deg); }
+  60%      { transform: translate(-10px, -5px) rotate(2.5deg); }
+  85%      { transform: translate(4px, -8px) rotate(-1deg); }
+}
+@keyframes floatOrange {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20%      { transform: translate(-7px, -9px) rotate(2deg); }
+  50%      { transform: translate(9px, 6px) rotate(-2.5deg); }
+  80%      { transform: translate(-5px, 8px) rotate(1.5deg); }
+}
+@keyframes floatTeal2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25%      { transform: translate(9px, -7px) rotate(-2deg); }
+  55%      { transform: translate(-8px, -4px) rotate(2deg); }
+  80%      { transform: translate(6px, 9px) rotate(-1.5deg); }
+}
+@keyframes floatRing {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33%      { transform: translate(-8px, 10px) rotate(2deg); }
+  66%      { transform: translate(9px, -6px) rotate(-2deg); }
 }
 
 .stk .t { display: block; font-size: 1.3em; letter-spacing: -0.01em; }
@@ -263,12 +325,18 @@ section[id] { scroll-margin-top: 1rem; }
 
 .burst { display: block; margin: 0.3em 0 0.1em; font-size: 1.1em; line-height: 1; }
 
-.stk-teal   { --x: 14.5%; --y: -4%;  --r: -6deg;  background: var(--teal); }
-.stk-yellow { --x: 2.5%;  --y: 38%;  --r: -10deg; background: var(--yellow); }
-.stk-pink   { --x: 62%;   --y: 16%;  --r: -9deg;  background: var(--pink); color: var(--cream); }
-.stk-orange { --x: 14%;   --y: 60%;  --r: 10deg;  background: var(--orange); color: var(--cream); }
-.stk-teal2  { --x: 84%;   --y: 26%;  --r: -18deg; background: var(--teal); }
-.stk-ring   { --x: 71.5%; --y: 66%;  --r: 0deg; }
+.stk-teal   { --x: 14.5%; --y: -4%;  --r: -6deg;  background: var(--teal);
+              --float-name: floatTeal;   --float-dur: 8s;    --float-delay: -1.2s; }
+.stk-yellow { --x: 2.5%;  --y: 38%;  --r: -10deg; background: var(--yellow);
+              --float-name: floatYellow; --float-dur: 10s;   --float-delay: -3.6s; }
+.stk-pink   { --x: 62%;   --y: 16%;  --r: -9deg;  background: var(--pink); color: var(--cream);
+              --float-name: floatPink;   --float-dur: 9s;    --float-delay: -.4s; }
+.stk-orange { --x: 14%;   --y: 60%;  --r: 10deg;  background: var(--orange); color: var(--cream);
+              --float-name: floatOrange; --float-dur: 11s;   --float-delay: -6.1s; }
+.stk-teal2  { --x: 84%;   --y: 26%;  --r: -18deg; background: var(--teal);
+              --float-name: floatTeal2;  --float-dur: 9.5s;  --float-delay: -2.8s; }
+.stk-ring   { --x: 71.5%; --y: 66%;  --r: 0deg;
+              --float-name: floatRing;   --float-dur: 12s;   --float-delay: -5s; }
 
 .stk-ring {
   width: 9em;
@@ -541,6 +609,7 @@ footer {
 }
 
 @media (max-width: 760px) {
+  :root { --header-h: 7.5rem; }
   .site-header { flex-wrap: wrap; row-gap: 1rem; }
 
   /* Headline stacks on two lines; script fits the widest line */
@@ -579,4 +648,5 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .stk { animation: none; transition: none; }
   .cta span { transition: none; }
+  .site-header { transition: none; }
 }

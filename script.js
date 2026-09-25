@@ -4,7 +4,7 @@
   /* ---------- 1. Fit the hero headline to the page width ---------- */
   const fitTargets = document.querySelectorAll("[data-fit]");
 
-  function fitHeadlines() {
+  function fitHeadlines () {
     fitTargets.forEach((el) => {
       const inner = el.firstElementChild;
       if (!inner) return;
@@ -30,7 +30,7 @@
   const panel = document.getElementById("panel");
   const photo = document.getElementById("portrait-img");
 
-  function showPhoto() {
+  function showPhoto () {
     photo.hidden = false;
     panel.classList.add("has-photo");
   }
@@ -77,7 +77,44 @@
     sticker.addEventListener("pointercancel", stop);
   });
 
-  /* ---------- 4. Footer year ---------- */
+  /* ---------- 4. Sticky nav: hides on scroll-down, reappears on scroll-up ---------- */
+  const header = document.querySelector(".site-header");
+
+  if (header) {
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    const updateHeader = () => {
+      const y = window.scrollY;
+      const scrolledPastTop = y > 8;
+      const scrollingDown = y > lastY;
+
+      header.classList.toggle("scrolled", scrolledPastTop);
+
+      // Only hide once we're comfortably past the hero, and only while
+      // actively scrolling down; any upward scroll brings it right back.
+      if (scrollingDown && y > header.offsetHeight + 40) {
+        header.classList.add("nav-hidden");
+      } else if (!scrollingDown) {
+        header.classList.remove("nav-hidden");
+      }
+
+      lastY = y;
+      ticking = false;
+    };
+
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Clicking a nav link should always reveal the header, even mid-hide.
+    header.addEventListener("click", () => header.classList.remove("nav-hidden"));
+  }
+
+  /* ---------- 5. Footer year ---------- */
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 })();

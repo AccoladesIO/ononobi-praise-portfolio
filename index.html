@@ -57,7 +57,7 @@
               <circle cx="200" cy="150" r="84" />
               <path d="M36 460C36 336 108 268 200 268s164 68 164 192z" />
             </svg>
-            <img id="portrait-img" src="assets/portrait.png" alt="Portrait of Ononobi Praise" hidden>
+            <img id="portrait-img" src="assets/image.png" alt="Portrait of Ononobi Praise" hidden>
           </div>
         </div>
 
@@ -120,23 +120,29 @@
 
       <div class="projects">
 
-        <article class="project" style="--c: var(--orange)">
+        <article class="project" style="--c: var(--teal)">
           <div class="p-head">
             <h3>RESPond</h3>
             <p class="kind">Redis client CLI</p>
           </div>
           <div class="p-body">
             <ul class="points">
-              <li>Zero-dependency Redis CLI built over Berkeley sockets with a 13-command RESP engine.</li>
-              <li>Benchmarked the RESP3 client on local hardware at 80k PING requests per second over a single
-                connection.</li>
-              <li>Covered parser and command paths with 40+ GTest cases under a Makefile build.</li>
+              <li>Built a Redis CLI in C++17 over POSIX sockets with no hiredis or networking libraries, supporting an
+                interactive REPL,
+                one-shot commands, pipelines, and script execution.</li>
+              <li>Wrote a parser for the full RESP3 type set (bulk/verbatim strings, arrays, sets, maps, push,
+                attributes) that renders
+                replies as JSON.</li>
+              <li>Handled IPv4/IPv6 via getaddrinfo, socket timeouts, and retry with exponential backoff.</li>
+              <li>Tested with GoogleTest against an in-process loopback server and socketpair, so the suite needs no
+                live Redis.</li>
             </ul>
             <ul class="tags">
-              <li>C++</li>
+              <li>C++17</li>
               <li>Berkeley Sockets</li>
-              <li>RESP</li>
-              <li>GTest</li>
+              <li>RESP3</li>
+              <li>GoogleTest</li>
+              <li>Make</li>
             </ul>
           </div>
           <a class="p-link" href="https://github.com/AccoladesIO/RESPond" target="_blank" rel="noopener"
@@ -150,9 +156,12 @@
           </div>
           <div class="p-body">
             <ul class="points">
-              <li>Engineered a modular bundler with a 5-stage, AST-based analyser in TypeScript.</li>
-              <li>Resolves graphs of 40+ nested modules into a single asset in under 15 milliseconds, per local
-                benchmarks.</li>
+              <li>Built a dependency-graph bundler from scratch: parses with acorn, resolves imports via Node’s
+                node_modules and
+                exports algorithm, and emits one file with a small require runtime.</li>
+              <li>Wrote an ESM-to-CommonJS transform with default-interop and made circular requires safe via a visited
+                map; verified
+                against real npm packages (nanoid, ms).</li>
               <li>Walks imports via the File System API and guards output with 30+ Jest tests.</li>
             </ul>
             <ul class="tags">
@@ -175,9 +184,17 @@
           </div>
           <div class="p-body">
             <ul class="points">
-              <li>Designed a 4-service task platform in TypeScript with Express.js APIs over MongoDB.</li>
-              <li>Decoupled the services through RabbitMQ queues for asynchronous task processing.</li>
-              <li>Orchestrated containers with Docker Compose, improving deployment speed by 40%.</li>
+              <li>Designed an event-driven system of 4 services (gateway, user, task, notification) in Node.js/Express,
+                with a MongoDB
+                database per service and gateway-level routing and rate limiting.</li>
+              <li>Made messaging reliable: the publisher uses a RabbitMQ confirm channel so a request succeeds only
+                after the broker
+                accepts the event, and the consumer nacks poison messages to a dead-letter queue instead of
+                crash-looping.
+              </li>
+              <li>Added health/readiness probes, health-gated Compose startup, and Prometheus metrics; tested with Jest,
+                supertest,
+                and in-memory MongoDB, with GitHub Actions CI.</li>
             </ul>
             <ul class="tags">
               <li>Node.js</li>
@@ -216,6 +233,34 @@
             aria-label="Ingest on GitHub (opens in a new tab)">GitHub</a>
         </article>
 
+        <article class="project" style="--c: var(--orange)">
+          <div class="p-head">
+            <h3>Stye</h3>
+            <p class="kind">Cross-platform file-watcher CLI</p>
+          </div>
+          <div class="p-body">
+            <ul class="points">
+              <li>Built a TypeScript CLI that watches files and reruns a command on change, with three run modes
+                (restart,
+                queue, concurrent) and full process-tree cleanup on exit.</li>
+              <li>Implemented a custom glob engine, debouncing, and a config-file system (JSON or a package.json key) so
+                behavior needs zero code changes across projects.</li>
+              <li>Verified reliability with 66 automated tests across Node 18, 20 and 22 in CI, then published it as a
+                scoped
+                package on the npm registry.</li>
+            </ul>
+            <ul class="tags">
+              <li>TypeScript</li>
+              <li>Node.js</li>
+              <li>CLI</li>
+              <li>npm</li>
+              <li>GitHub Actions</li>
+            </ul>
+          </div>
+          <a class="p-link" href="https://github.com/oxaccolades/stye" target="_blank" rel="noopener"
+            aria-label="Stye on GitHub (opens in a new tab)">GitHub</a>
+        </article>
+
       </div>
     </section>
 
@@ -233,6 +278,32 @@
         <div class="stat" style="--c: var(--orange); --r: 1.5deg"><b>$25M+</b><span>in client assets covered by Fortren
             platforms</span></div>
       </div>
+
+      <article class="job">
+        <div class="job-meta">
+          <p>April 2026 &ndash; August 2026</p>
+          <p>Remote &middot; Contract</p>
+        </div>
+        <div class="job-main">
+          <h3>Afterquery</h3>
+          <p class="role">Contract Software Engineer</p>
+          <ul class="points">
+            <li>Worked at a Y Combinator-backed startup building complex data infrastructure to power AI training
+              datasets.</li>
+            <li>Served as an individual contributor, developing developer tools and production-quality applications
+              using TypeScript, Python, Redis, and SQL.</li>
+            <li>Built diverse end-to-end solutions &mdash; dashboards, workflow tools, management systems &mdash;
+              that demonstrated varied architectural patterns and became part of high-quality datasets for
+              fine-tuning advanced AI models.</li>
+          </ul>
+          <ul class="tags">
+            <li>TypeScript</li>
+            <li>Python</li>
+            <li>Redis</li>
+            <li>SQL</li>
+          </ul>
+        </div>
+      </article>
 
       <article class="job">
         <div class="job-meta">
@@ -299,8 +370,8 @@
 
       <div class="about-grid">
         <div class="about-text">
-          <p class="lead">I build full-stack products and the low-level tools underneath them, from location-verified
-            attendance apps to a Redis client written in C++.</p>
+          <p class="lead">I have spent my university career learning how to build fast, deterministic software from
+            first principles.</p>
           <p>I'm studying Electrical &amp; Electronics Engineering at the University of Lagos while shipping production
             software. I also teach: I tutor software engineering with GDSC UNILAG and lead frontend lessons at ECX
             UNILAG.</p>
@@ -358,15 +429,28 @@
       <div class="roles">
         <article>
           <h3>Frontend Engineering Lead</h3>
-          <p class="role">ECX UNILAG, Nov 2025 &ndash; Present</p>
+          <p class="role">ECX UNILAG, Nov 2025 &ndash; Aug 2026</p>
           <p>Delivered intensive JavaScript, React, and API lessons. Among students who completed the program, 80% went
             on to build and deploy apps addressing local needs.</p>
         </article>
         <article>
           <h3>Operations Lead</h3>
-          <p class="role">Claude Builders Club, UNILAG, Feb 2026 &ndash; Present</p>
+          <p class="role">Claude Builders Club, UNILAG, Feb 2026 &ndash; Aug 2026</p>
           <p>Handled logistics for monthly technical workshops and hackathons for 500+ participants, consistently
             delivering programs on schedule.</p>
+        </article>
+        <article>
+          <h3>Technical Tutor</h3>
+          <p class="role">GDSC UNILAG, Sept 2023 &ndash; Nov 2024</p>
+          <p>Supported student-led initiatives, fostering a collaborative learning environment and encouraging
+            participation in
+            hackathons and open-source contributions.</p>
+        </article>
+        <article>
+          <h3>Fellow/Alumni</h3>
+          <p class="role">United Nations Academic Impact &ndash; Millennium Campus Network (MCN) 2024.</p>
+          <p>Collaborated on community-driven projects aimed at empowering underprivileged students through technology
+            and education.</p>
         </article>
       </div>
     </section>
